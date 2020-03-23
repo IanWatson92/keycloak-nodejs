@@ -70,6 +70,6 @@ app.use('*', function (req, res) {
   res.send('Not found!');
 });
 
-app.listen(3000, function () {
-  console.log('Started at port 3000');
+app.listen(8080, function () {
+  console.log('Started at port 8080');
 });
