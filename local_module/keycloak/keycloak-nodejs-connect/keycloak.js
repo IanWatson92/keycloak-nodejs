@@ -304,6 +304,7 @@ Keycloak.prototype.accessDenied = function (request, response) {
 
 /*! ignore */
 Keycloak.prototype.getGrant = function (request, response) {
+  console.log("Get Grant called");
   var rawData;
 
   for (var i = 0; i < this.stores.length; ++i) {
