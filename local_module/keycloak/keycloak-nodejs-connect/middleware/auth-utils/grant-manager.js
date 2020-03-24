@@ -465,6 +465,7 @@ GrantManager.prototype.validateToken = function validateToken (token, expectedTy
           }
         }).catch((err) => {
           console.log("fail 12");
+          console.log(err.message);
           reject(new Error('failed to load public key to verify token. Reason: ' + err.message));
         });
       }
