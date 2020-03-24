@@ -72,7 +72,7 @@ Rotation.prototype.getJWK = function getJWK (kid) {
   var currentTime = new Date().getTime() / 1000;
   if (currentTime > this.lastTimeRequesTime + this.minTimeBetweenJwksRequests) {
     return this.retrieveJWKs()
-      .then(publicKeys => {a
+      .then(publicKeys => {
         console.log("call back to jwks");
         self.lastTimeRequesTime = currentTime;
         self.jwks = publicKeys.keys;
