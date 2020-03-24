@@ -72,4 +72,5 @@ app.use('*', function (req, res) {
 
 app.listen(8080, function () {
   console.log('Started at port 8080');
+  console.log('Proving this works');
 });

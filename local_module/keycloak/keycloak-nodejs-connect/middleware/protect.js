@@ -36,6 +36,7 @@ function forceLogin (keycloak, request, response) {
 }
 
 function simpleGuard (role, token) {
+  console.log("I am in the simple guard!");
   return token.hasRole(role);
 }
 
