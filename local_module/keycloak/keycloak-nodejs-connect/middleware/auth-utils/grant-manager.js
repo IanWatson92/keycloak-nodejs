@@ -346,7 +346,8 @@ GrantManager.prototype.createGrant = function createGrant (rawData) {
     token_type: grantData.token_type,
     __raw: rawData
   });
-
+  console.log("Grant is");
+  console.log(grant);
   if (this.isGrantRefreshable(grant)) {
     return new Promise((resolve, reject) => {
       this.ensureFreshness(grant)
