@@ -48,19 +48,25 @@ module.exports = function (keycloak, spec) {
   } else if (typeof spec === 'string') {
     guard = simpleGuard.bind(undefined, spec);
   }
-
+  console.log("Protect 0")
   return function protect (request, response, next) {
+    console.log("Protect 1")
     if (request.kauth && request.kauth.grant) {
+      console.log("Protect 2")
       if (!guard || guard(request.kauth.grant.access_token, request, response)) {
+        console.log("Protect 3")
         return next();
       }
 
+      console.log("Protect 4")
       return keycloak.accessDenied(request, response, next);
     }
 
+    console.log("Protect 5")
     if (keycloak.redirectToLogin(request)) {
       forceLogin(keycloak, request, response);
     } else {
+      console.log("Protect 6")
       return keycloak.accessDenied(request, response, next);
     }
   };
