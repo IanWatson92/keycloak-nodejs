@@ -350,6 +350,8 @@ Keycloak.prototype.storeGrant = function (grant, request, response) {
 
   this.stores[1].wrap(grant);
   grant.store(request, response);
+  console.log("Grant stored and returning")
+  console.log(grant)
   return grant;
 };
 
