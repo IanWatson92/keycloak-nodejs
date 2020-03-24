@@ -334,6 +334,7 @@ GrantManager.prototype.isGrantRefreshable = function isGrantRefreshable (grant) 
  * @return {Promise} A promise reoslving a grant.
  */
 GrantManager.prototype.createGrant = function createGrant (rawData) {
+  console.log("CreateGrant called in grant manager!")
   let grantData = rawData;
   if (typeof rawData !== 'object') grantData = JSON.parse(grantData);
 
