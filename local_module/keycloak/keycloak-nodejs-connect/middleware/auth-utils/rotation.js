@@ -74,6 +74,8 @@ Rotation.prototype.getJWK = function getJWK (kid) {
       .then(publicKeys => {
         self.lastTimeRequesTime = currentTime;
         self.jwks = publicKeys.keys;
+        console.log("Got jwks");
+        console.log(self.jwks);
         var convertedKey = jwkToPem(self.jwks.find((key) => { return key.kid === kid; }));
         return convertedKey;
       });
