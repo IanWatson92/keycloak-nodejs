@@ -36,6 +36,7 @@ function Rotation (config) {
 Rotation.prototype.retrieveJWKs = function retrieveJWKs (callback) {
   const url = this.realmUrl + '/protocol/openid-connect/certs';
   const options = URL.parse(url);
+  console.log("URL is " + url);
   options.method = 'GET';
   const promise = new Promise((resolve, reject) => {
     const req = getProtocol(options).request(options, (response) => {
