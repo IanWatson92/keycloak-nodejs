@@ -322,7 +322,8 @@ Keycloak.prototype.getGrant = function (request, response) {
 
   console.log("Grant Data is");
   console.log(grantData)
-
+  console.log("Error?")
+  console.log(grantData.error)
   if (grantData && !grantData.error) {
     var self = this;
     return this.grantManager.createGrant(JSON.stringify(grantData))
