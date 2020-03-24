@@ -333,6 +333,7 @@ Keycloak.prototype.getGrant = function (request, response) {
 };
 
 Keycloak.prototype.storeGrant = function (grant, request, response) {
+  console.log("Store grant called!")
   if (this.stores.length < 2 || BearerStore.get(request)) {
     // cannot store bearer-only, and should not store if grant is from the
     // authorization header
@@ -367,10 +368,6 @@ Keycloak.prototype.getGrantFromCode = function (code, request, response) {
 
   var self = this;
   return this.grantManager.obtainFromCode(request, code, sessionId)
-    .then(function (grant) {
-      console.log("Grant from keycloak is " + grant);
-      return grant;
-    });
     .then(function (grant) {
       self.storeGrant(grant, request, response);
       return grant;
