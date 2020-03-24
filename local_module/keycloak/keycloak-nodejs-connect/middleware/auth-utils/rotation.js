@@ -59,12 +59,14 @@ Rotation.prototype.retrieveJWKs = function retrieveJWKs (callback) {
 Rotation.prototype.getJWK = function getJWK (kid) {
   let key = this.jwks.find((key) => { return key.kid === kid; });
   if (key) {
+    console.log("returning jwkToPem");
     return new Promise((resolve, reject) => {
       resolve(jwkToPem(key));
     });
   }
   var self = this;
 
+  console.log("Retrieving JWK");
   // check if we are allowed to send request
   var currentTime = new Date().getTime() / 1000;
   if (currentTime > this.lastTimeRequesTime + this.minTimeBetweenJwksRequests) {
