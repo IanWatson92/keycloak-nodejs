@@ -368,6 +368,10 @@ Keycloak.prototype.getGrantFromCode = function (code, request, response) {
   var self = this;
   return this.grantManager.obtainFromCode(request, code, sessionId)
     .then(function (grant) {
+      console.log("Grant from keycloak is " + grant);
+      return grant;
+    });
+    .then(function (grant) {
       self.storeGrant(grant, request, response);
       return grant;
     });
