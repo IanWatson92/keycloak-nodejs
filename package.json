@@ -5,6 +5,7 @@
     "start" : "node app.js"
   },
   "dependencies" : {
+    "morgan": "^1.10.0"
     "keycloak-connect": "file:local_module/keycloak/keycloak-nodejs-connect",
     "body-parser": "^1.13.3",
     "express": "^4.13.3",

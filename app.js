@@ -20,8 +20,10 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var Keycloak = require('keycloak-connect');
 var cors = require('cors');
+var morgan = require('morgan')
 
 var app = express();
+app.use(morgan('combined'))
 app.use(bodyParser.json());
 
 // Enable CORS support
