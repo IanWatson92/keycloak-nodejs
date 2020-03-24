@@ -341,6 +341,7 @@ Keycloak.prototype.storeGrant = function (grant, request, response) {
   if (this.stores.length < 2 || BearerStore.get(request)) {
     // cannot store bearer-only, and should not store if grant is from the
     // authorization header
+    console.log("not storing grant as its from a bearer header")
     return;
   }
   if (!grant) {
