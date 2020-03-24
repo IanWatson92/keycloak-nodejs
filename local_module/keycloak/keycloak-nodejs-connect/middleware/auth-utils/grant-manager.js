@@ -418,16 +418,22 @@ GrantManager.prototype.validateGrant = function validateGrant (grant) {
 GrantManager.prototype.validateToken = function validateToken (token, expectedType) {
   return new Promise((resolve, reject) => {
     if (!token) {
+      console.log("fail 1");
       reject(new Error('invalid token (missing)'));
     } else if (token.isExpired()) {
+      console.log("fail 2");
       reject(new Error('invalid token (expired)'));
     } else if (!token.signed) {
+      console.log("fail 3");
       reject(new Error('invalid token (not signed)'));
     } else if (token.content.typ !== expectedType) {
+      console.log("fail 4");
       reject(new Error('invalid token (wrong type)'));
     } else if (token.content.iat < this.notBefore) {
+      console.log("fail 5");
       reject(new Error('invalid token (stale token)'));
     } else if (token.content.iss !== this.realmUrl) {
+      console.log("fail 6");
       reject(new Error('invalid token (wrong ISS)'));
     } else {
       const verify = crypto.createVerify('RSA-SHA256');
@@ -436,11 +442,14 @@ GrantManager.prototype.validateToken = function validateToken (token, expectedTy
         try {
           verify.update(token.signed);
           if (!verify.verify(this.publicKey, token.signature, 'base64')) {
+            console.log("fail 7");
             reject(new Error('invalid token (signature)'));
           } else {
+            console.log("success 8");
             resolve(token);
           }
         } catch (err) {
+          console.log("fail 9");
           reject(new Error('Misconfigured parameters while validating token. Check your keycloak.json file!'));
         }
       } else {
@@ -448,11 +457,14 @@ GrantManager.prototype.validateToken = function validateToken (token, expectedTy
         this.rotation.getJWK(token.header.kid).then(key => {
           verify.update(token.signed);
           if (!verify.verify(key, token.signature)) {
+            console.log("fail 10");
             reject(new Error('invalid token (public key signature)'));
           } else {
+            console.log("success 11");
             resolve(token);
           }
         }).catch((err) => {
+          console.log("fail 12");
           reject(new Error('failed to load public key to verify token. Reason: ' + err.message));
         });
       }
