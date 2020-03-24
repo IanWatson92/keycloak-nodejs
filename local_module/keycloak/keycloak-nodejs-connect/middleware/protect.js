@@ -42,7 +42,7 @@ function simpleGuard (role, token) {
 
 module.exports = function (keycloak, spec) {
   let guard;
-
+  console.log('I am here!!!!');
   if (typeof spec === 'function') {
     guard = spec;
   } else if (typeof spec === 'string') {
