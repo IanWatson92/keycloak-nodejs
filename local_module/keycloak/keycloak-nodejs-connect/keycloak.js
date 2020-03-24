@@ -337,22 +337,25 @@ Keycloak.prototype.getGrant = function (request, response) {
 };
 
 Keycloak.prototype.storeGrant = function (grant, request, response) {
-  console.log("Store grant called!")
+  console.log("Store grant called!");
   if (this.stores.length < 2 || BearerStore.get(request)) {
     // cannot store bearer-only, and should not store if grant is from the
     // authorization header
-    console.log("not storing grant as its from a bearer header")
+    console.log("not storing grant as its from a bearer header");
     return;
   }
+
   if (!grant) {
+    console.log("no grant so access denied");
     this.accessDenied(request, response);
     return;
   }
 
+  console.log("Storing grant here");
   this.stores[1].wrap(grant);
   grant.store(request, response);
-  console.log("Grant stored and returning")
-  console.log(grant)
+  console.log("Grant stored and returning");
+  console.log(grant);
   return grant;
 };
 
