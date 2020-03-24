@@ -23,7 +23,7 @@ var cors = require('cors');
 var morgan = require('morgan')
 
 var app = express();
-app.use(morgan('combined'))
+app.use(morgan(':req[Authorization] :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"'))
 app.use(bodyParser.json());
 
 // Enable CORS support
