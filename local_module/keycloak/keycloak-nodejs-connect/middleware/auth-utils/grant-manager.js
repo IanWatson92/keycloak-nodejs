@@ -349,6 +349,7 @@ GrantManager.prototype.createGrant = function createGrant (rawData) {
   console.log("Grant is");
   console.log(grant);
   if (this.isGrantRefreshable(grant)) {
+    console.log("Grant refreshable");
     return new Promise((resolve, reject) => {
       this.ensureFreshness(grant)
         .then(g => this.validateGrant(g))
@@ -356,6 +357,7 @@ GrantManager.prototype.createGrant = function createGrant (rawData) {
         .catch(err => reject(err));
     });
   } else {
+    console.log("Returning validating");
     return this.validateGrant(grant);
   }
 };
