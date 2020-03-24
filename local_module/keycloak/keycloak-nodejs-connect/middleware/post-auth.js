@@ -21,6 +21,7 @@ module.exports = function (keycloak) {
   return function postAuth (request, response, next) {
     console.log('PostAuth called!');
     if (!request.query.auth_callback) {
+      console.log("PostAuth finished!");
       return next();
     }
 
