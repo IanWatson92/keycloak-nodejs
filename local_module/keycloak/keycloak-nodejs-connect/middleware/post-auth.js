@@ -19,7 +19,7 @@ const URL = require('url');
 
 module.exports = function (keycloak) {
   return function postAuth (request, response, next) {
-    console.log('PostAuth called!')
+    console.log('PostAuth called!');
     if (!request.query.auth_callback) {
       return next();
     }
@@ -35,6 +35,7 @@ module.exports = function (keycloak) {
 
     keycloak.getGrantFromCode(request.query.code, request, response)
       .then(grant => {
+        console.log("I am in the getGrantFromCode block");
         let urlParts = {
           pathname: request.path,
           query: request.query
@@ -46,7 +47,7 @@ module.exports = function (keycloak) {
         delete urlParts.query.session_state;
 
         let cleanUrl = URL.format(urlParts);
-
+        console.log("I have set kauth to grant");
         request.kauth.grant = grant;
         try {
           keycloak.authenticated(request);
